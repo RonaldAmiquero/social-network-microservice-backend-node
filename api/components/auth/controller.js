@@ -23,7 +23,7 @@ module.exports = function (injectedStore) {
 
   async function upsert(data) {
     const authData = {
-      id: data.id,
+      auth_id: data.id,
     };
 
     if (data.username) {

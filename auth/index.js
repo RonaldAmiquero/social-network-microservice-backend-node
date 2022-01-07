@@ -9,7 +9,7 @@ function sign(data) {
   return jwt.sign(data, secret);
 }
 
-function verify(token) {
+function verifyAndDecoded(token) {
   try {
     return jwt.verify(token, secret);
   } catch (error) {
@@ -20,13 +20,16 @@ function verify(token) {
 const check = {
   own: function (req, owner) {
     const decoded = decodeHeader(req);
-    console.log(decoded);
-    if (decoded.id !== owner) {
+    console.log(`decoded.auth_id: ${decoded.auth_id} && owner:${owner}`);
+    if (decoded.auth_id !== owner) {
       throw error(
         getReasonPhrase(StatusCodes.UNAUTHORIZED),
         StatusCodes.UNAUTHORIZED
       );
     }
+  },
+  logged: function (req) {
+    const decoded = decodeHeader(req);
   },
 };
 
@@ -45,7 +48,7 @@ function getToken(auth) {
 function decodeHeader(req) {
   const authorization = req.headers.authorization || '';
   const token = getToken(authorization);
-  const decoded = verify(token);
+  const decoded = verifyAndDecoded(token);
   req.user = decoded;
   return decoded;
 }

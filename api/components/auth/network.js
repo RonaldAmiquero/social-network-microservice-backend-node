@@ -9,15 +9,14 @@ router.post('/login', login);
 
 //Internal functions
 
-async function login(req, res) {
+async function login(req, res, next) {
   try {
-    console.log(req.body.password);
     const token = await Controller.login(req.body.username, req.body.password);
     response.success(req, res, token, StatusCodes.OK);
   } catch (e) {
     console.log(e);
-    response.error(req, res, e.message, StatusCodes.BAD_REQUEST);
-    next();
+    /* response.error(req, res, e.message, StatusCodes.BAD_REQUEST); */
+    next(e);
   }
 }
 
