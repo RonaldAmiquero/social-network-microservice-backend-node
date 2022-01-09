@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon api/index.js"
+    "dev": "nodemon api/index.js",
+    "mysqlserver": "nodemon mysql/index.js",
+    "postserver": "nodemon post/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "express": "^4.17.2",
     "http-status-codes": "^2.1.4",

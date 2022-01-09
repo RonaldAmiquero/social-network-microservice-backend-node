@@ -21,5 +21,5 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(errors);
 
 app.listen(config.api.port, () => {
-  console.log('Server listen in http://localhost:3000/');
+  console.log(`Server listen in http://localhost:${config.api.port}/`);
 });
