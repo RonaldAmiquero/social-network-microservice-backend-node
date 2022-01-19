@@ -2,14 +2,28 @@ const { nanoid } = require('nanoid');
 const auth = require('../auth');
 const TABLE = 'users';
 
-module.exports = function (injectedStore) {
+module.exports = function (injectedStore, injectedCache) {
   let store = injectedStore;
+  let cache = injectedCache;
 
   if (!store) {
     store = require('../../../store/dummy');
   }
-  function list() {
-    return store.list(TABLE);
+  if (!cache) {
+    cache = require('../../../store/cacheespecificdb');
+  }
+  async function list() {
+    let users = await cache.list(TABLE);
+
+    if (!users) {
+      console.log('No users found in cache');
+      users = await store.list(TABLE);
+      console.log('cache:------' + users);
+      cache.upsert(TABLE, users);
+    } else {
+      console.log('Users found in cache');
+    }
+    return users;
   }
   function get(id) {
     return store.get(TABLE, id);

@@ -1,3 +1,5 @@
+/* require('dotenv').config(); */
+
 module.exports = {
   api: {
     port: process.env.PORT || 3000,
@@ -19,5 +21,16 @@ module.exports = {
   mysqlService: {
     host: process.env.MYSQL_SRV_HOST || 'localhost',
     port: process.env.MYSQL_SRV_PORT || 3001,
+  },
+  cacheService: {
+    host: process.env.MYSQL_SRV_HOST || 'localhost',
+    port: process.env.MYSQL_SRV_PORT || 3003,
+  },
+  redis: {
+    host:
+      process.env.REDIS_HOST ||
+      'redis-15103.c240.us-east-1-3.ec2.cloud.redislabs.com',
+    port: process.env.REDIS_PORT || 15103,
+    password: process.env.REDIS_PASS || '6yzW2zapE9WiLjwbVDPYpdbIDZlMALsU',
   },
 };

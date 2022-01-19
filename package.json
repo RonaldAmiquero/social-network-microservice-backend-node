@@ -1,5 +1,8 @@
 {
   "name": "social-network-backend-node-microservicios",
+  "engines": {
+    "node": "14.x"
+  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon api/index.js",
     "mysqlserver": "nodemon mysql/index.js",
-    "postserver": "nodemon post/index.js"
+    "postserver": "nodemon post/index.js",
+    "cacheserver": "nodemon cache/index.js"
   },
   "keywords": [],
   "author": "",
@@ -15,11 +19,13 @@
   "dependencies": {
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
+    "dotenv": "^11.0.0",
     "express": "^4.17.2",
     "http-status-codes": "^2.1.4",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "nanoid": "^3.1.30",
+    "redis": "^4.0.2",
     "swagger-ui-express": "^4.3.0"
   }
 }
